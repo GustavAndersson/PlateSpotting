@@ -11,17 +11,28 @@
             <h:dataTable value="#{plateBean.plates}" var="plate">
                 <h:column>
                     <f:facet name="header">Plate</f:facet>
-                    #{plate.platePK.plateId}
+                        #{plate.platePK.plateId}
                 </h:column>
                 <h:column>
                     <f:facet name="header">Date</f:facet>
-                    #{plate.date}
+                        #{plate.date}
                 </h:column>
                 <h:column>
                     <f:facet name="header">Note</f:facet>
-                    #{plate.note}
+                        #{plate.note}
                 </h:column>
             </h:dataTable>
+        </h:form>
+        <h2>Lägg till användare</h2>
+        <h:form>
+            <h:panelGrid columns="2">
+                <h:outputLabel value="namn" for="name"/>
+                    <h:inputText value="#{userBean.name}" id="name"/>
+                <h:outputLabel value="picture" for="picture"/>
+                    <h:inputText value="#{userBean.password}" id="password"/>
+                    <h:panelGroup/>
+                    <h:commandButton action="#{userBean.saveUser()}" value="Spara användare"/>
+            </h:panelGrid>
         </h:form>
     </h:body>
 </html>

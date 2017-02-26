@@ -30,7 +30,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "User.findAll", query = "SELECT u FROM User u"),
     @NamedQuery(name = "User.findById", query = "SELECT u FROM User u WHERE u.id = :id"),
     @NamedQuery(name = "User.findByName", query = "SELECT u FROM User u WHERE u.name = :name"),
-    @NamedQuery(name = "User.findByPicture", query = "SELECT u FROM User u WHERE u.picture = :picture")})
+    @NamedQuery(name = "User.findByPassword", query = "SELECT u FROM User u WHERE u.password = :password")})
 public class User implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -47,8 +47,8 @@ public class User implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 200)
-    @Column(name = "picture")
-    private String picture;
+    @Column(name = "password")
+    private String password;
 
     public User() {
     }
@@ -57,10 +57,10 @@ public class User implements Serializable {
         this.id = id;
     }
 
-    public User(Integer id, String name, String picture) {
+    public User(Integer id, String name, String password) {
         this.id = id;
         this.name = name;
-        this.picture = picture;
+        this.password = password;
     }
 
     public Integer getId() {
@@ -79,12 +79,12 @@ public class User implements Serializable {
         this.name = name;
     }
 
-    public String getPicture() {
-        return picture;
+    public String getPassword() {
+        return password;
     }
 
-    public void setPicture(String picture) {
-        this.picture = picture;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     @Override

@@ -79,5 +79,4 @@ public class PlatePK implements Serializable {
     public String toString() {
         return "nu.te4.entities.PlatePK[ plateId=" + plateId + ", userId=" + userId + " ]";
     }
-    
 }
