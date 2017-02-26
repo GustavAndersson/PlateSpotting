@@ -4,38 +4,55 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:p="http://primefaces.org/ui">
-    <h:head>
-        <title>Facelet Title</title>
-    </h:head>
-    <h:body>
-        <h1>Platespotting Sweden</h1>
-        <h:form>
-            <h:dataTable value="#{plateBean.plates}" var="plate">
-                <h:column>
-                    <f:facet name="header">Plate</f:facet>
-                        #{plate.platePK.plateId}
-                </h:column>
-                <h:column>
-                    <f:facet name="header">Date</f:facet>
-                        #{plate.date}
-                </h:column>
-                <h:column>
-                    <f:facet name="header">Note</f:facet>
-                        #{plate.note}
-                </h:column>
-            </h:dataTable>
-        </h:form>
-        <h2>Lägg till användare</h2>
-        <h:form>
-            <h:panelGrid columns="2">
-                <h:outputLabel value="namn" for="name"/>
-                    <p:inputText value="#{userBean.name}" id="name"/>
-                    <h:outputLabel value="password" for="password"/>
-                    <p:password value="#{userBean.password}" id="password"/>
-                    <h:panelGroup/>
-                    <p:commandButton action="#{userBean.saveUser()}" icon="ui-icon-check" value="Spara användare"/>
-            </h:panelGrid>
-        </h:form>
-    </h:body>
+    <f:view contentType="text/html">
+        <h:head>
+            <f:facet name="first">
+                <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+                <title>Platespotting</title>
+            </f:facet>
+            <style>
+                .ui-layout-pane{
+                    border:0;
+                }
+            </style>
+
+        </h:head>
+        <h:body>
+            <p:layout fullPage="true">
+                <p:layoutUnit header="Platespotting" position="north" >
+                    <p>Welcome to Platespotting. This webpage allows you to keep track of your plateseries.</p>
+                </p:layoutUnit>
+                <p:layoutUnit position="center">
+                    <h2>Login</h2>
+                    <h:form>
+                        <h:panelGrid columns="2">
+                            <p:inputText value="#{userBean.name}" id="name" title="Enter username"/>
+                            <p:tooltip for="name"/>
+                            <p:password value="#{userBean.password}" id="password" title="Enter password"/>
+                            <p:tooltip for="password"/>
+                            <p:commandButton action="#{userBean.saveUser()}" icon="ui-icon-check" value="Login"/>
+                        </h:panelGrid>
+                    </h:form>
+                </p:layoutUnit>
+                <p:layoutUnit position="south">
+                    <h:form>
+                        <p:dataTable value="#{plateBean.plates}" var="plate">
+                            <p:column headerText="Plate">
+                                <h:outputText value="#{plate.platePK.plateId}" />
+                            </p:column>
+
+                            <p:column headerText="Date">
+                                <h:outputText value="#{plate.date}" />
+                            </p:column>
+
+                            <p:column headerText="Note">
+                                <h:outputText value="#{plate.note}" />
+                            </p:column>
+                        </p:dataTable>
+                    </h:form>
+                </p:layoutUnit>
+            </p:layout>
+        </h:body>
+    </f:view>
 </html>
 
