@@ -47,7 +47,6 @@
                     <h2>Login</h2>
                     <h:form>
                         <h:panelGrid columns="5">                           
-
                             <p:inputText value="#{userBean.name}" id="name" title="Enter username"/>
                             <p:tooltip for="name"/>
                             <p:password value="#{userBean.password}" id="password" title="Enter password"/>
@@ -57,7 +56,7 @@
                             <p:tooltip for="loginName"/>
                             <p:password value="#{userBean.password}" id="loginPassword" title="Enter password"/>
                             <p:tooltip for="loginPassword"/>
-                            <p:commandButton action="#{userBean.login()}" icon="ui-icon-check" value="Login"/>
+                            <p:commandButton action="#{userBean.authenticate()}" icon="ui-icon-check" value="Login"/>
                         </h:panelGrid>
                     </h:form>
                 </p:layoutUnit>
