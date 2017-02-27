@@ -4,7 +4,6 @@ import java.util.List;
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
-import nu.te4.entities.Plate;
 import nu.te4.entities.User;
 import nu.te4.sessionbeans.UserFacade;
 import nu.te4.support.BCrypt;
@@ -48,12 +47,20 @@ public class UserBean implements Serializable{
         return userFacade.findAll();
     }
     
-    public String saveUser(){
+    public String createUser(){
         hashedPassword = BCrypt.hashpw(password, BCrypt.gensalt());
         User user = new User(null, name, hashedPassword);
         userFacade.create(user);
-        
         return "index";
+    }
+    
+    public String login(){
+        String namn = "Koke";
+        if(name.equals(namn)){
+            return "myPage";
+        }else{
+            return "index";
+        }
     }
     
     

@@ -63,17 +63,21 @@ public class PlateBean implements Serializable{
     @EJB
     UserFacade userFacade;
     
-    public List<Plate> getPlates(){
+    public List<Plate> getPlates(){      
         return plateFacade.findAll();
     }
     
-   // public String savePlate(){
-     //   PlatePK platePK = new PlatePK(userId, plateId);
-       // Plate plate = new Plate(platePK, date, note);
-        //User user = userFacade.find(userId);
-        //platePK.setUserId(user);
-        //plateFacade.create(plate);
+    public String getUser(int id){
+        return userFacade.find(id).getName();
+    }
+    
+    public String savePlate(){
+       PlatePK platePK = new PlatePK(userID, plateID);
+       Plate plate = new Plate(platePK, date, note);
+       User user = userFacade.find(userID);
+      // platePK.setUserId(user);
+       plateFacade.create(plate);
         
-       // return "index";
-    //}
+        return "index";
+    }
 }
