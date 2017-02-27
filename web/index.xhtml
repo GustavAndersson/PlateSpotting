@@ -42,16 +42,12 @@
             <p:layout fullPage="true">
                 <p:layoutUnit header="Platespotting Sweden" position="north">
                     <p>Welcome to Platespotting. This webpage allows you to keep track of your plateseries. Start your journey today by creating an account below.</p>
+                    <p:commandButton action="register.xhtml" icon="ui-icon-plus" value="Register"/>
                 </p:layoutUnit>
                 <p:layoutUnit position="center">
                     <h2>Login</h2>
                     <h:form>
                         <h:panelGrid columns="5">                           
-                            <p:inputText value="#{userBean.name}" id="name" title="Enter username"/>
-                            <p:tooltip for="name"/>
-                            <p:password value="#{userBean.password}" id="password" title="Enter password"/>
-                            <p:tooltip for="password"/>
-                            <p:commandButton action="#{userBean.createUser()}" icon="ui-icon-plus" value="Register"/>
                             <p:inputText value="#{userBean.name}" id="loginName" title="Enter username"/>
                             <p:tooltip for="loginName"/>
                             <p:password value="#{userBean.password}" id="loginPassword" title="Enter password"/>

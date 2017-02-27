@@ -83,4 +83,9 @@ public class PlateBean implements Serializable{
         
         return "index";
     }
+    
+    public List <Plate> getUserPlates(int id){
+        return plateFacade.findWithID(id);
+        
+    }
 }

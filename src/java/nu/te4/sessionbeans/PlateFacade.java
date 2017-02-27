@@ -5,6 +5,7 @@
  */
 package nu.te4.sessionbeans;
 
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -28,5 +29,12 @@ public class PlateFacade extends AbstractFacade<Plate> {
     public PlateFacade() {
         super(Plate.class);
     }
-    
+
+    public List findWithID(int id) {
+        return em.createQuery(
+                "SELECT p FROM Plate p WHERE p.platePK.userId = :id")
+                .setParameter("user_id", id)
+                .getResultList();
+    }
+
 }

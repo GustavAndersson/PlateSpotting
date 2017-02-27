@@ -1,0 +1,54 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <f:view contentType="text/html">
+        <h:head>
+            <f:facet name="second">
+                <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+                <title>Platespotting</title>
+            </f:facet>
+            <style>
+                .ui-layout-pane{
+                    border:0;
+                }
+
+                .ui-layout-south .ui-layout-unit-content {
+                    overflow:hidden !important;
+                } 
+
+                .ui-layout-north .ui-layout-unit-content{
+                    overflow:hidden !important;
+                }
+
+                .ui-layout-center .ui-layout-unit-content{
+                    overflow:hidden !important;
+                }
+                h2{
+                    text-align:center;
+                }
+                #formdiv {
+                    margin: 0 auto;
+                }
+            </style>
+        </h:head>
+        <h:body>
+            <p:layout fullPage="true">
+                <p:layoutUnit position="center">
+                    <h2>Create an account</h2>
+                    <h:form>
+                        <h:panelGrid columns="5">
+                            <p:inputText value="#{userBean.name}" id="name" title="Enter username"/>
+                            <p:tooltip for="name"/>
+                            <p:password value="#{userBean.password}" id="password" title="Enter password"/>
+                            <p:tooltip for="password"/>
+                            <p:commandButton action="#{userBean.createUser()}" icon="ui-icon-plus" value="Register"/>
+                        </h:panelGrid>
+                    </h:form>
+                </p:layoutUnit>
+            </p:layout>
+        </h:body>
+    </f:view>
+</html>

@@ -41,6 +41,9 @@ public class UserBean implements Serializable {
 
     @EJB
     UserFacade userFacade;
+    
+    @EJB
+    PlateBean plateBean;
 
     public List<User> getUsers() {
         return userFacade.findAll();
@@ -56,7 +59,8 @@ public class UserBean implements Serializable {
     public String authenticate() {
         List<User> user = userFacade.findWithName(name);
         User users = user.get(0);
-        if(BCrypt.checkpw(password, users.getPassword())){
+        if(BCrypt.checkpw(password, users.getPassword())){ 
+            plateBean.getUserPlates(users.getId());
             System.out.println("Logged in");
                return "myPage";
         }else{
@@ -64,13 +68,5 @@ public class UserBean implements Serializable {
              return "index";
         }
     }
-
-    //public String login(){
-    //String namn = "Koke";
-    //if(name.equals(namn)){
-    //  return "myPage";
-    //}else{
-    //  return "index";
-    //}
-    //}
+    
 }
