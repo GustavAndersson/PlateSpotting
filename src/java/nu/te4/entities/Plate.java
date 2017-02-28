@@ -40,9 +40,9 @@ public class Plate implements Serializable {
     protected PlatePK platePK;
     @Basic(optional = false)
     @NotNull
+    @Size(min = 1, max = 30)
     @Column(name = "date")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date date;
+    private String date;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 100)
@@ -56,7 +56,7 @@ public class Plate implements Serializable {
         this.platePK = platePK;
     }
 
-    public Plate(PlatePK platePK, Date date, String note) {
+    public Plate(PlatePK platePK, String date, String note) {
         this.platePK = platePK;
         this.date = date;
         this.note = note;
@@ -74,11 +74,11 @@ public class Plate implements Serializable {
         this.platePK = platePK;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 

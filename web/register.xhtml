@@ -48,6 +48,17 @@
                         </h:panelGrid>
                     </h:form>
                 </p:layoutUnit>
+                <p:layoutUnit position="south">
+                    <h2>Save plate</h2>
+                    <h:form>
+                        <h:panelGrid columns="5">
+                            <p:inputText value="#{plateBean.plateID}" title="Enter plateID"/>
+                            <p:inputText value="#{plateBean.userID}"  title="Enter userID"/>
+                            <p:inputText value="#{plateBean.note}"  title="Enter note"/>
+                            <p:commandButton action="#{plateBean.savePlate()}" icon="ui-icon-plus" value="Save plate"/>
+                        </h:panelGrid>
+                    </h:form>
+                </p:layoutUnit>
             </p:layout>
         </h:body>
     </f:view>

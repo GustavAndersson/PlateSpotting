@@ -1,5 +1,6 @@
 
 import java.io.Serializable;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import javax.ejb.EJB;
@@ -23,7 +24,7 @@ public class PlateBean implements Serializable{
     
     private int userID, plateID;
     private String note;
-    private Date date;
+    private String date = java.text.DateFormat.getDateTimeInstance().format(Calendar.getInstance().getTime());
 
     public int getUserID() {
         return userID;
@@ -41,11 +42,11 @@ public class PlateBean implements Serializable{
         this.plateID = plateID;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 
@@ -75,7 +76,7 @@ public class PlateBean implements Serializable{
     public String savePlate(){
        PlatePK platePK = new PlatePK(userID, plateID);
        System.out.println(platePK);
-       Plate plate = new Plate(platePK, null, note);
+       Plate plate = new Plate(platePK, date, note);
        System.out.println(plate);
        //User user = userFacade.find(userID);
        //platePK.setUserId(user);
@@ -84,8 +85,8 @@ public class PlateBean implements Serializable{
         return "index";
     }
     
-    public List <Plate> getUserPlates(int id){
-        return plateFacade.findWithID(id);
+   // public List <Plate> getUserPlates(int id){
+      //  return plateFacade.findWithID(id);
         
-    }
+   // }
 }

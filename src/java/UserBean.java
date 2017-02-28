@@ -8,15 +8,7 @@ import nu.te4.entities.User;
 import nu.te4.sessionbeans.UserFacade;
 import nu.te4.support.BCrypt;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-/**
- *
- * @author guan97005
- */
+
 @Named
 @SessionScoped
 public class UserBean implements Serializable {
@@ -41,9 +33,6 @@ public class UserBean implements Serializable {
 
     @EJB
     UserFacade userFacade;
-    
-    @EJB
-    PlateBean plateBean;
 
     public List<User> getUsers() {
         return userFacade.findAll();
@@ -60,7 +49,7 @@ public class UserBean implements Serializable {
         List<User> user = userFacade.findWithName(name);
         User users = user.get(0);
         if(BCrypt.checkpw(password, users.getPassword())){ 
-            plateBean.getUserPlates(users.getId());
+            //plateBean.getUserPlates(users.getId());
             System.out.println("Logged in");
                return "myPage";
         }else{
