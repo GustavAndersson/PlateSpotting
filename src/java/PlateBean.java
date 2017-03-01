@@ -74,7 +74,7 @@ public class PlateBean implements Serializable{
     }
     
     public String savePlate(){
-       PlatePK platePK = new PlatePK(userID, plateID);
+       PlatePK platePK = new PlatePK(UserBean.username, plateID);
        System.out.println(platePK);
        Plate plate = new Plate(platePK, date, note);
        System.out.println(plate);
@@ -82,6 +82,10 @@ public class PlateBean implements Serializable{
        //platePK.setUserId(user);
        plateFacade.create(plate);
         return "index";
+    }
+    
+    public String storePlate(){ 
+        return "myPage";
     }
     
 }

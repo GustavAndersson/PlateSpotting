@@ -13,32 +13,17 @@
             <style>
                 .ui-layout-pane{
                     border:0;
-                }
+                }   
 
-                .ui-layout-south .ui-layout-unit-content {
-                    overflow:hidden !important;
-                } 
-
-                .ui-layout-north .ui-layout-unit-content{
-                    overflow:hidden !important;
-                }
-
-                .ui-layout-center .ui-layout-unit-content{
-                    overflow:hidden !important;
-                }
                 h2{
                     text-align:center;
-                }
-                #formdiv {
-                    margin: 0 auto;
                 }
             </style>
 
         </h:head>
         <h:body>
             <p:layout fullPage="true">
-                <p:layoutUnit header="Platespotting Sweden" position="north">
-                    <p>Welcome to Platespotting. This webpage allows you to keep track of your plateseries. Start your journey today by creating an account below.</p>
+                <p:layoutUnit header="Platespotting Sweden" position="center">
                 </p:layoutUnit>
                 <p:layoutUnit position="center">
                     <h2>Add plate</h2>
@@ -53,22 +38,17 @@
                 </p:layoutUnit>
                 <p:layoutUnit position="south">
                     <h2>My plates</h2>
-                    <div id="formdiv">
                         <h:form>
                             <p:dataTable value="#{plateBean.plates}" var="plate">
-                                <p:column headerText="Plate">
+                                <p:column headerText="Plate number">
                                     <h:outputText value="#{plate.platePK.plateId}" id="plateid" title="#{plate.date}" />
                                     <p:tooltip for="plateid"/>
                                 </p:column>
-                                <p:column headerText="User">
-                                    <h:outputText value="#{plateBean.getUser(plate.platePK.userId)}" />
-                                </p:column>
-                                <p:column headerText="Note">
+                                <p:column headerText="Where did I spot it?">
                                     <h:outputText value="#{plate.note}" />
                                 </p:column>
                             </p:dataTable>
                         </h:form>
-                    </div>
                 </p:layoutUnit>
             </p:layout>
         </h:body>

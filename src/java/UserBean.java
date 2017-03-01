@@ -1,3 +1,4 @@
+
 import java.io.Serializable;
 import java.util.List;
 import javax.ejb.EJB;
@@ -8,7 +9,6 @@ import nu.te4.entities.User;
 import nu.te4.sessionbeans.PlateFacade;
 import nu.te4.sessionbeans.UserFacade;
 import nu.te4.support.BCrypt;
-
 
 @Named
 @SessionScoped
@@ -34,7 +34,7 @@ public class UserBean implements Serializable {
 
     @EJB
     UserFacade userFacade;
-    
+
     @EJB
     PlateFacade plateFacade;
 
@@ -48,22 +48,30 @@ public class UserBean implements Serializable {
         userFacade.create(user);
         return "index";
     }
-
+    
+    public static int username;
     public String authenticate() {
         List<User> user = userFacade.findWithName(name);
         User users = user.get(0);
-        if(BCrypt.checkpw(password, users.getPassword())){ 
-            List<Plate> plates = plateFacade.findWithID(users.getId()); //Den inloggades plattor ligger här
-            for(Plate plate: plates){
+        if (BCrypt.checkpw(password, users.getPassword())) {
+            username = users.getId();
+            //Den inloggades plates ligger här
+            List<Plate> plates = plateFacade.findWithID(users.getId());
+            for (Plate plate : plates) {
                 System.out.println(plate.getPlatePK().getPlateId());
                 System.out.println(plate.getNote());
             }
+            //Den inloggades senaste plate hämtas
+            List<Plate> maxPlate = plateFacade.findMaxPlate(users.getId());
+            System.out.println("Max plate:" + maxPlate.get(0));
+         
+
             System.out.println("Logged in");
-               return "myPage";
-        }else{
+            return "myPage";
+        } else {
             System.out.println("Login does not work");
-             return "index";
+            return "index";
         }
     }
-    
+
 }

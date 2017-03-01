@@ -36,5 +36,12 @@ public class PlateFacade extends AbstractFacade<Plate> {
                 .setParameter("id", id)
                 .getResultList();
     }
+    
+    public List findMaxPlate(int id){
+        return em.createQuery(
+                "SELECT max(p.platePK.plateId) FROM Plate p WHERE p.platePK.userId = :id")
+                .setParameter("id", id)
+                .getResultList();
+    }
 
 }
