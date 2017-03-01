@@ -33,7 +33,7 @@ public class PlateFacade extends AbstractFacade<Plate> {
     public List findWithID(int id) {
         return em.createQuery(
                 "SELECT p FROM Plate p WHERE p.platePK.userId = :id")
-                .setParameter("user_id", id)
+                .setParameter("id", id)
                 .getResultList();
     }
 

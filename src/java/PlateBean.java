@@ -81,12 +81,7 @@ public class PlateBean implements Serializable{
        //User user = userFacade.find(userID);
        //platePK.setUserId(user);
        plateFacade.create(plate);
-        
         return "index";
     }
     
-   // public List <Plate> getUserPlates(int id){
-      //  return plateFacade.findWithID(id);
-        
-   // }
 }

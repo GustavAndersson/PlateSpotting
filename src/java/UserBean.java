@@ -1,10 +1,11 @@
-
 import java.io.Serializable;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
+import nu.te4.entities.Plate;
 import nu.te4.entities.User;
+import nu.te4.sessionbeans.PlateFacade;
 import nu.te4.sessionbeans.UserFacade;
 import nu.te4.support.BCrypt;
 
@@ -33,6 +34,9 @@ public class UserBean implements Serializable {
 
     @EJB
     UserFacade userFacade;
+    
+    @EJB
+    PlateFacade plateFacade;
 
     public List<User> getUsers() {
         return userFacade.findAll();
@@ -49,7 +53,11 @@ public class UserBean implements Serializable {
         List<User> user = userFacade.findWithName(name);
         User users = user.get(0);
         if(BCrypt.checkpw(password, users.getPassword())){ 
-            //plateBean.getUserPlates(users.getId());
+            List<Plate> plates = plateFacade.findWithID(users.getId()); //Den inloggades plattor ligger här
+            for(Plate plate: plates){
+                System.out.println(plate.getPlatePK().getPlateId());
+                System.out.println(plate.getNote());
+            }
             System.out.println("Logged in");
                return "myPage";
         }else{
