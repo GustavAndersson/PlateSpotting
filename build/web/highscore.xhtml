@@ -41,7 +41,7 @@
             <p:layoutUnit position="south">
                     <h2>Highscore List</h2>
                             <h:form>
-                            <p:dataTable value="#{plateBean.highscore}" var="plate">
+                            <p:dataTable value="#{plateBean.plates}" var="plate">
                                 <p:column headerText="Plate number">
                                     <h:outputText value="#{plate.platePK.plateId}" id="plateid" title="#{plate.date}" />
                                     <p:tooltip for="plateid"/>

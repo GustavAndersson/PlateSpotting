@@ -23,18 +23,17 @@
         </h:head>
         <h:body>
             <p:layout fullPage="true">
-                <p:layoutUnit header="Platespotting Sweden" position="center">
-                </p:layoutUnit>
                 <p:layoutUnit position="center">
                     <h2>Add plate</h2>
                     <h:form>
-                        <h:panelGrid>                           
-                            <p:inputText value="#{userBean.note}" title="Enter some info"/>
+                        <h:panelGrid columns="4">                           
+                            <p:inputText value="#{userBean.note}" id="note" title="Enter some info"/>
+                            <p:tooltip for="note"/>
                             <p:commandButton action="#{userBean.savePlate()}" icon="ui-icon-check" value="#{userBean.nextNumber} spotted"/>
                         </h:panelGrid>
                     </h:form>
                 </p:layoutUnit>
-                <p:layoutUnit position="south" resizable="true">
+                <p:layoutUnit position="south" size="450" resizable="true">
                     <h2>My plates</h2>
                         <h:form>
                             <p:dataTable value="#{userBean.myPlates}" var="plate">

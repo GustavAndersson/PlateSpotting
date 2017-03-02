@@ -1,16 +1,17 @@
 
+import com.mysql.jdbc.Connection;
 import java.io.Serializable;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.Calendar;
-import java.util.LinkedList;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 import nu.te4.entities.Plate;
-import nu.te4.entities.PlatePK;
-import nu.te4.entities.User;
 import nu.te4.sessionbeans.PlateFacade;
 import nu.te4.sessionbeans.UserFacade;
+import nu.te4.support.ConnectionFactory;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -88,5 +89,4 @@ public class PlateBean implements Serializable {
 
         return plates; //plateFacade.findHighscores();
     } */
-    
 }

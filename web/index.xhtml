@@ -14,11 +14,6 @@
                 .ui-layout-pane{
                     border:0;
                 }
-
-
-                .body{
-                    background: #000000;
-                }
                 h2{
                     text-align:center;
                 }
@@ -29,8 +24,6 @@
             <p:layout fullPage="true">
                 <p:layoutUnit header="Platespotting Sweden" position="north">
                     <p>Welcome to Platespotting. This webpage allows you to keep track of your plateseries. Start your journey today by creating an account below.</p>
-                    <p:commandButton action="register.xhtml" icon="ui-icon-plus" value="Register"/>
-                    <p:commandButton action="highscore.xhtml" icon="ui-icon-plus" value="Highscore"/>
                 </p:layoutUnit>
                 <p:layoutUnit position="center">
                     <h2>Login</h2>
@@ -44,23 +37,14 @@
                         </h:panelGrid>
                     </h:form>
                 </p:layoutUnit>
-                <p:layoutUnit position="south" resizable="true">
-                    <div id="formdiv">
-                        <h:form>
-                            <p:dataTable value="#{plateBean.plates}" var="plate">
-                                <p:column headerText="Plate">
-                                    <h:outputText value="#{plate.platePK.plateId}" id="plateid" title="#{plate.date}" />
-                                    <p:tooltip for="plateid"/>
-                                </p:column>
-                                <p:column headerText="User">
-                                    <h:outputText value="#{plateBean.getUser(plate.platePK.userId)}" />
-                                </p:column>
-                                <p:column headerText="Note">
-                                    <h:outputText value="#{plate.note}" />
-                                </p:column>
-                            </p:dataTable>
-                        </h:form>
-                    </div>
+                <p:layoutUnit position="west" size="250" header="Menu" collapsible="true">
+                    <h:form>
+                        <p:menu>
+                            <p:menuitem value="Register" action="register.xhtml" icon="ui-icon-plusthick" />
+                            <p:menuitem value="Highscore" action="highscore.xhtml" icon="ui-icon-star"/>
+                            <p:menuitem value="Rules" action="rules.xhtml" icon="ui-icon-note"/>
+                        </p:menu>
+                    </h:form>
                 </p:layoutUnit>
             </p:layout>
         </h:body>
