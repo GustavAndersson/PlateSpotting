@@ -5,18 +5,17 @@
  */
 package nu.te4.sessionbeans;
 
-import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import nu.te4.entities.Plate;
+import nu.te4.entities.Highscores;
 
 /**
  *
  * @author guan97005
  */
 @Stateless
-public class PlateFacade extends AbstractFacade<Plate> {
+public class HighscoresFacade extends AbstractFacade<Highscores> {
 
     @PersistenceContext(unitName = "PlateSpottingPU")
     private EntityManager em;
@@ -26,16 +25,8 @@ public class PlateFacade extends AbstractFacade<Plate> {
         return em;
     }
 
-    public PlateFacade() {
-        super(Plate.class);
+    public HighscoresFacade() {
+        super(Highscores.class);
     }
-
-    public List findWithID(int id) {
-        return em.createQuery(
-                "SELECT p FROM Plate p WHERE p.platePK.userId = :id")
-                .setParameter("id", id)
-                .getResultList();
-    }
-
-
+    
 }

@@ -1,7 +1,7 @@
 
 import java.io.Serializable;
 import java.util.Calendar;
-import java.util.Date;
+import java.util.LinkedList;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
@@ -17,11 +17,10 @@ import nu.te4.sessionbeans.UserFacade;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 @Named
 @SessionScoped
-public class PlateBean implements Serializable{
-    
+public class PlateBean implements Serializable {
+
     private int userID, plateID;
     private String note;
     private String date = java.text.DateFormat.getDateTimeInstance().format(Calendar.getInstance().getTime());
@@ -57,35 +56,37 @@ public class PlateBean implements Serializable{
     public void setNote(String note) {
         this.note = note;
     }
-    
+
     @EJB
     PlateFacade plateFacade;
-    
+
     @EJB
     UserFacade userFacade;
-    
-    public List<Plate> getPlates(){  
+
+    public List<Plate> getPlates() {
+        System.out.println("All plates " + plateFacade.findAll());
         return plateFacade.findAll();
     }
-    
-    public String getUser(int id){
+
+    public String getUser(int id) {
         return userFacade.find(id).getName();
-        
     }
-    
-    public String savePlate(){
-       PlatePK platePK = new PlatePK(UserBean.username, plateID);
-       System.out.println(platePK);
-       Plate plate = new Plate(platePK, date, note);
-       System.out.println(plate);
-       //User user = userFacade.find(userID);
-       //platePK.setUserId(user);
-       plateFacade.create(plate);
-        return "index";
-    }
-    
-    public String storePlate(){ 
-        return "myPage";
-    }
+
+   /* public List<Plate> getHighscore() {
+        System.out.println("Highscores");
+        List<Plate> plates = new LinkedList<>();
+        PlatePK platePK = new PlatePK(555, 666);
+        Plate p = new Plate(platePK, "datum", "note");
+        plates.add(p);
+        try {
+             plates = plateFacade.findHighscores();
+        } catch (Exception e) {
+            PlatePK platePK2 = new PlatePK(666, 777);
+            Plate p2 = new Plate(platePK2, "datum", "SKITEN CRASHADE");
+            plates.add(p2);
+        }
+
+        return plates; //plateFacade.findHighscores();
+    } */
     
 }

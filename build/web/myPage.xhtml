@@ -29,22 +29,20 @@
                     <h2>Add plate</h2>
                     <h:form>
                         <h:panelGrid>                           
-                            <p:inputText value="#{plateBean.plateID}"  title="Enter username"/>
-                            <p:inputText value="#{plateBean.userID}" title="Enter password"/>
-                            <p:inputText value="#{plateBean.note}" title="Enter password"/>
-                            <p:commandButton action="#{plateBean.savePlate()}" icon="ui-icon-check" value="Add plate"/>
+                            <p:inputText value="#{userBean.note}" title="Enter some info"/>
+                            <p:commandButton action="#{userBean.savePlate()}" icon="ui-icon-check" value="#{userBean.nextNumber} spotted"/>
                         </h:panelGrid>
                     </h:form>
                 </p:layoutUnit>
-                <p:layoutUnit position="south">
+                <p:layoutUnit position="south" resizable="true">
                     <h2>My plates</h2>
                         <h:form>
-                            <p:dataTable value="#{plateBean.plates}" var="plate">
+                            <p:dataTable value="#{userBean.myPlates}" var="plate">
                                 <p:column headerText="Plate number">
                                     <h:outputText value="#{plate.platePK.plateId}" id="plateid" title="#{plate.date}" />
                                     <p:tooltip for="plateid"/>
                                 </p:column>
-                                <p:column headerText="Where did I spot it?">
+                                <p:column headerText="Location">
                                     <h:outputText value="#{plate.note}" />
                                 </p:column>
                             </p:dataTable>

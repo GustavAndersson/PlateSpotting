@@ -6,38 +6,42 @@
       xmlns:p="http://primefaces.org/ui">
     <f:view contentType="text/html">
         <h:head>
-            <f:facet name="second">
+            <f:facet name="third">
                 <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
                 <title>Platespotting</title>
             </f:facet>
             <style>
                 .ui-layout-pane{
                     border:0;
-                }   
+                }
 
+                .ui-layout-south .ui-layout-unit-content {
+                    overflow:hidden !important;
+                } 
+
+                .ui-layout-north .ui-layout-unit-content{
+                    overflow:hidden !important;
+                }
+
+                .ui-layout-center .ui-layout-unit-content{
+                    overflow:hidden !important;
+                }
+                .body{
+                    background: #000000;
+                }
                 h2{
                     text-align:center;
                 }
+                #formdiv {
+                    margin: 0 auto;
+                }
             </style>
-
         </h:head>
         <h:body>
-            <p:layout fullPage="true">
-                <p:layoutUnit header="Platespotting Sweden" position="center">
-                </p:layoutUnit>
-                <p:layoutUnit position="center">
-                    <h2>Add plate</h2>
-                    <h:form>
-                        <h:panelGrid>                           
-                            <p:inputText value="#{userBean.note}" title="Enter some info"/>
-                            <p:commandButton action="#{userBean.savePlate()}" icon="ui-icon-check" value="#{userBean.nextNumber} spotted"/>
-                        </h:panelGrid>
-                    </h:form>
-                </p:layoutUnit>
-                <p:layoutUnit position="south" resizable="true">
-                    <h2>My plates</h2>
-                        <h:form>
-                            <p:dataTable value="#{userBean.myPlates}" var="plate">
+            <p:layoutUnit position="south">
+                    <h2>Highscore List</h2>
+                            <h:form>
+                            <p:dataTable value="#{plateBean.highscore}" var="plate">
                                 <p:column headerText="Plate number">
                                     <h:outputText value="#{plate.platePK.plateId}" id="plateid" title="#{plate.date}" />
                                     <p:tooltip for="plateid"/>
@@ -48,7 +52,6 @@
                             </p:dataTable>
                         </h:form>
                 </p:layoutUnit>
-            </p:layout>
         </h:body>
     </f:view>
 </html>
